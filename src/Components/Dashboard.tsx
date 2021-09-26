@@ -1,8 +1,7 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { FilterBar } from "./FilterBar";
-import { InfoCard } from "./InfoCard";
-import { SearchBar } from "./SearchBar";
+import { IdeaCards } from "./IdeaCards";
 
 export const Dashboard: React.FC = () => {
   return (
@@ -16,7 +15,7 @@ export const Dashboard: React.FC = () => {
           </Row>
         </Col>
         <Col>
-          <InfoCard />
+          <IdeaCards />
         </Col>
       </Row>
     </main>
