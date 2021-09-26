@@ -1,0 +1,64 @@
+:root {
+  --primary: #4bd97e;
+  --header-height: 68px;
+  --footer-height: 56px;
+}
+
+
+
+.header {
+  box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.1);
+  padding: 1em;
+  background: #ffff;
+  position: sticky;
+  top: 0;
+  z-index: 111;
+  text-align: center;
+}
+
+.logo {
+  height: 25px;
+  position: relative;
+  top: -3px;
+  margin-left: 4px;
+}
+
+main {
+  min-height: calc(100vh - var(--header-height) - var(--footer-height) - 1rem);
+}
+
+.footer {
+  padding: 1em;
+  position: sticky;
+  background: #ffff;
+  bottom: 0;
+  z-index: 111;
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.card {
+  margin: 0.5rem;
+}
+
+.card:hover {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.mt-16 {
+  margin-top: 1rem;
+}
+
+
+.primary-text {
+  color: var(--primary);
+}
+
+.primary-bg {
+  background: var(--primary) !important;
+  border: none !important;
+}
+
+.font-bold {
+  font-weight: 500 !important;
+}
