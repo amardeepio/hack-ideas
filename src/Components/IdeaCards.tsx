@@ -45,9 +45,9 @@ export const IdeaCards: React.FC<IdeaCardsProps> = (props: IdeaCardsProps) => {
 
   return (
     <>
-      <Row>
+      <div className="grid-container">
         {ideaList.map((idea, idx) => (
-          <Col lg={3} md={4} sm={6} xs={12}>
+          <div className="grid-col">
             <Card className="card">
               <Card.Body
                 className="cursor-pointer"
@@ -55,7 +55,7 @@ export const IdeaCards: React.FC<IdeaCardsProps> = (props: IdeaCardsProps) => {
                 onClick={() => handleToggleModal(idx)}
               >
                 <Card.Title>{idea.title}</Card.Title>
-                <Card.Text>{idea.description.slice(0, 50)}....</Card.Text>
+                <Card.Text>{idea.description.length > 50 ? idea.description.slice(0, 50) + "...." : idea.description}</Card.Text>
               </Card.Body>
               <Card.Footer>
                 <Row>
@@ -78,9 +78,9 @@ export const IdeaCards: React.FC<IdeaCardsProps> = (props: IdeaCardsProps) => {
                 </Row>
               </Card.Footer>
             </Card>
-          </Col>
+          </div>
         ))}
-      </Row>
+      </div>
       {loading && <Loader />}
       <AlertMessage
         title="Info"

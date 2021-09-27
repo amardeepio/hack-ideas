@@ -79,10 +79,11 @@ export const IdeaDetailModal: React.FC<IdeaDetailModalProps> = (
                   <Form.Control
                     {...formik.getFieldProps("description")}
                     placeholder="Describe your idea"
+                    as="textarea" rows={3}
                   />
 
                   {formik.touched.description && formik.errors.description ? (
-                    <Form.Text className="text-danger">
+                    <Form.Text className="text-danger" >
                       {formik.errors.description}
                     </Form.Text>
                   ) : null}

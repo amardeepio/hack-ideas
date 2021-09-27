@@ -11,7 +11,7 @@ import { Header } from "./Header";
 import { IdeaCards } from "./IdeaCards";
 
 export const Dashboard: React.FC = () => {
-  const [user, setUser] = useLocalStorage("user", "");
+  const [user] = useLocalStorage("user", "");
   const history = useHistory();
   if (!user) {
     history.push("/login");

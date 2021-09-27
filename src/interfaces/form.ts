@@ -1,5 +1,3 @@
-import { HackIdea } from "./documentData";
-
 export interface IdeaDetailModalProps {
   show: boolean;
   toggleModal: () => void;

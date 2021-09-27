@@ -72,18 +72,18 @@ button {
 
 .upvote-container {
   float: right;
-  
 }
 
-.upvote-icon{
+.upvote-icon {
   cursor: pointer;
+  padding-right: 2px;
 }
 
 .cursor-pointer {
   cursor: pointer;
 }
 
-.upvote-icon:hover{
+.upvote-icon:hover {
   color: red;
 }
 
@@ -107,9 +107,25 @@ button {
 .logout-button {
   width: 21px;
   height: 21px;
-  color: var(--primary) ;
+  color: var(--primary);
 }
 
-.float-right{
+.float-right {
   float: right;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10em, 25em));
+}
+
+.card {
+  min-height: 177px;
+}
+
+@media only screen and (max-width: 576px) {
+  .sort-buttons {
+    padding-top: 5px;
+    text-align: center;
+  }
 }
