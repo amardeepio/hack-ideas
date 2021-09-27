@@ -3,8 +3,6 @@ import "../style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import { Routes } from "../Routes";
-import { Dashboard } from "./Dashboard";
 
 function App() {
   return (

@@ -1,15 +1,28 @@
 import { firebaseConfig } from "../firebaseConfig";
 import firebase from "firebase/compat/app";
-import { getFirestore, collection, getDocs, addDoc, updateDoc, getDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  getDoc,
+  query,
+  orderBy,
+} from "firebase/firestore";
 import { HackIdea } from "../interfaces/documentData";
+import { FieldSortOrder } from "../constant";
 
 const app = firebase.initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export async function getData() {
-  const ideaCollection = collection(db, "ideas");
-  const collectionSnapshot = await getDocs(ideaCollection);
-  const ideaList = collectionSnapshot.docs.map((doc) => doc.data());
+export async function getData(field: string, order: FieldSortOrder) {
+  const collectionRef = collection(db, "ideas");
+  const result = query(collectionRef, orderBy(field, order));
+  const querySnapshot = await getDocs(result);
+  const ideaList = querySnapshot.docs.map((doc) => {
+    return { id: doc.id, ...doc.data() };
+  });
   return ideaList;
 }
 

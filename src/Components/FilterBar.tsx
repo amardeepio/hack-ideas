@@ -1,10 +1,10 @@
-
 import React from "react";
 import { Col, Row } from "react-bootstrap";
+import { FieldSortOrder } from "../constant";
 import { SearchBar } from "./SearchBar";
 import { SortComponent } from "./SortComponent";
 
-export const FilterBar: React.FC = () => {
+export const FilterBar: React.FC<FilterBarProps> = (props: FilterBarProps) => {
   return (
     <div className="mb-2">
       <Row>
@@ -12,10 +12,17 @@ export const FilterBar: React.FC = () => {
           <SearchBar />
         </Col>
         <Col md={2} sm={4}>
-          <SortComponent />
+          <SortComponent {...props} />
         </Col>
         <Col></Col>
       </Row>
     </div>
   );
 };
+
+interface FilterBarProps {
+  order: FieldSortOrder;
+  updateOrder: (val: FieldSortOrder) => void;
+  field: string;
+  updateField: (val: string) => void;
+}

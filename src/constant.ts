@@ -10,3 +10,10 @@ export const routes = [
   },
   { path: "*", component: PageNotFound },
 ];
+
+export enum SortOrder{
+    ASC = "asc",
+    DESC = "desc"
+}
+
+export type FieldSortOrder = SortOrder.ASC | SortOrder.DESC;

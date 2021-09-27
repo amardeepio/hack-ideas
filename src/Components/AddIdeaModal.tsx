@@ -4,6 +4,7 @@ import { FieldProps, Formik, FormikProps } from "formik";
 import * as Yup from "yup";
 import { FormFields, AddIdeaModalProps } from "../interfaces/form";
 import { saveData } from "../functions";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 const initialValues: FormFields = {
   title: "",
   description: "",
@@ -14,6 +15,7 @@ export const AddIdeaModal: React.FC<AddIdeaModalProps> = (
   props: AddIdeaModalProps
 ) => {
   const { show, toggleModal } = props;
+  const [user, setUser] = useLocalStorage("user", "")
   const handleSave = (formik: FormikProps<any>) => {
     formik.handleSubmit();
     toggleModal();
@@ -25,6 +27,7 @@ export const AddIdeaModal: React.FC<AddIdeaModalProps> = (
       createdAt: new Date(),
       upvotes: 0,
       tags: values.tags.split(","),
+      userId: user
     });
   };
 

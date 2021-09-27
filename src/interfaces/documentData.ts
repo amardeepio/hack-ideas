@@ -4,4 +4,5 @@ export interface HackIdea {
     tags: string[];
     upvotes: number;
     createdAt: string | Date;
+    userId: string;
 }

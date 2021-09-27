@@ -4,8 +4,6 @@
   --footer-height: 56px;
 }
 
-
-
 .header {
   box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.1);
   padding: 1em;
@@ -59,7 +57,6 @@
   margin-top: 1rem;
 }
 
-
 .primary-text {
   color: var(--primary);
 }
@@ -77,10 +74,15 @@ button {
   float: right;
 }
 
-
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+
+.sort-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
 }

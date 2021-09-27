@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useHistory } from "react-router";
+import { FieldSortOrder, SortOrder } from "../constant";
+import { getData } from "../functions";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { HackIdea } from "../interfaces/documentData";
 import { FilterBar } from "./FilterBar";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
@@ -13,6 +16,18 @@ export const Dashboard: React.FC = () => {
   if (!user) {
     history.push("/login");
   }
+  const [ideaList, setIdeaList] = useState<HackIdea[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [field, setField] = useState("createdAt");
+  const [order, setOrder] = useState<FieldSortOrder>(SortOrder.DESC);
+  const fetchData = async () => {
+    const data = await getData(field, order);
+    setLoading(false);
+    setIdeaList(data as unknown as HackIdea[]);
+  };
+  useEffect(() => {
+    fetchData();
+  }, [field, order]);
   return (
     <>
       <Header />
@@ -21,12 +36,17 @@ export const Dashboard: React.FC = () => {
           <Col md={12}>
             <Row>
               <Col>
-                <FilterBar />
+                <FilterBar
+                  order={order}
+                  updateField={setField}
+                  updateOrder={setOrder}
+                  field={field}
+                />
               </Col>
             </Row>
           </Col>
           <Col>
-            <IdeaCards />
+            <IdeaCards ideaList={ideaList} loading={loading} />
           </Col>
         </Row>
       </main>
