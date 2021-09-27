@@ -2,8 +2,8 @@ import { Modal, Button, Form } from "react-bootstrap";
 import React from "react";
 import { FieldProps, Formik, FormikProps } from "formik";
 import * as Yup from "yup";
-import { FormFields, AddIdeaModalProps } from "../interfaces/form";
-import { saveData } from "../functions";
+import { FormFields, IdeaDetailModalProps } from "../interfaces/form";
+import { saveData, updateData } from "../functions";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 const initialValues: FormFields = {
   title: "",
@@ -11,34 +11,38 @@ const initialValues: FormFields = {
   tags: "",
 };
 
-export const AddIdeaModal: React.FC<AddIdeaModalProps> = (
-  props: AddIdeaModalProps
+export const IdeaDetailModal: React.FC<IdeaDetailModalProps> = (
+  props: IdeaDetailModalProps
 ) => {
-  const { show, toggleModal } = props;
-  const [user, setUser] = useLocalStorage("user", "")
-  const handleSave = (formik: FormikProps<any>) => {
-    formik.handleSubmit();
-    toggleModal();
-  };
-  const handleFormSubmit = (values: FormFields) => {
-    console.log(values);
-    saveData({
-      ...values,
-      createdAt: new Date(),
-      upvotes: 0,
-      tags: values.tags.split(","),
-      userId: user
-    });
+  const { show, toggleModal, title, data, id } = props;
+  const [user, setUser] = useLocalStorage("user", "");
+  const handleFormSubmit = async (values: FormFields) => {
+    if (id) {
+      await updateData(id, {
+        ...values,
+        tags: values.tags.split(","),
+      });
+      toggleModal();
+    } else {
+      await saveData({
+        ...values,
+        createdAt: new Date(),
+        upvotes: 0,
+        tags: values.tags.split(","),
+        userId: user,
+      });
+      toggleModal();
+    }
   };
 
   return (
     <Modal show={show} onHide={toggleModal}>
       <Modal.Header closeButton>
-        <Modal.Title>Add Idea</Modal.Title>
+        <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
 
       <Formik
-        initialValues={initialValues}
+        initialValues={data || initialValues}
         validationSchema={Yup.object({
           title: Yup.string()
             .min(3, "Must be 3 characters or more")
@@ -51,6 +55,7 @@ export const AddIdeaModal: React.FC<AddIdeaModalProps> = (
         onSubmit={(values, { setSubmitting }) => {
           handleFormSubmit(values);
         }}
+        enableReinitialize
       >
         {(formik) => (
           <>
@@ -95,7 +100,7 @@ export const AddIdeaModal: React.FC<AddIdeaModalProps> = (
               <Button variant="secondary" onClick={toggleModal}>
                 Close
               </Button>
-              <Button variant="primary" onClick={() => handleSave(formik)}>
+              <Button variant="primary" onClick={() => formik.handleSubmit()}>
                 Save Changes
               </Button>
             </Modal.Footer>

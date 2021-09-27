@@ -5,10 +5,10 @@ import {
   collection,
   getDocs,
   addDoc,
-  updateDoc,
-  getDoc,
   query,
   orderBy,
+  setDoc,
+  doc,
 } from "firebase/firestore";
 import { HackIdea } from "../interfaces/documentData";
 import { FieldSortOrder } from "../constant";
@@ -28,13 +28,10 @@ export async function getData(field: string, order: FieldSortOrder) {
 
 export async function saveData(data: HackIdea) {
   const collectionRef = collection(db, "ideas");
-  const docRef = await addDoc(collectionRef, data);
-  return true;
+  await addDoc(collectionRef, data);
 }
 
-export async function updateData(data: HackIdea) {
-  const collectionRef = collection(db, "ideas");
-  // collectionRef.
-  // const docById = await getDoc()
-  // const docRef = await updateDoc(collectionRef, )
+export async function updateData(id: string, data: HackIdea) {
+  const collectionRef = doc(db, "ideas", id);
+  await setDoc(collectionRef, { ...data }, { merge: true });
 }

@@ -11,9 +11,19 @@ export const routes = [
   { path: "*", component: PageNotFound },
 ];
 
-export enum SortOrder{
-    ASC = "asc",
-    DESC = "desc"
+export enum SortOrder {
+  ASC = "asc",
+  DESC = "desc",
 }
 
 export type FieldSortOrder = SortOrder.ASC | SortOrder.DESC;
+
+export const colors = [
+  "primary",
+  "secondary",
+  "success",
+  "warning",
+  "danger",
+  "info",
+  "dark",
+];

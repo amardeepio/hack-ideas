@@ -10,7 +10,7 @@
   background: #ffff;
   position: sticky;
   top: 0;
-  z-index: 111;
+  z-index: 11;
   text-align: center;
 }
 
@@ -34,7 +34,7 @@
   position: sticky;
   background: #ffff;
   bottom: 0;
-  z-index: 111;
+  z-index: 11;
   box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
@@ -70,8 +70,21 @@ button {
   font-weight: 500 !important;
 }
 
-.upvote-icon {
+.upvote-container {
   float: right;
+  
+}
+
+.upvote-icon{
+  cursor: pointer;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.upvote-icon:hover{
+  color: red;
 }
 
 .login-container {
@@ -85,4 +98,18 @@ button {
   display: flex;
   flex-direction: row;
   gap: 2px;
+}
+
+.alert-z-index {
+  z-index: 111;
+}
+
+.logout-button {
+  width: 21px;
+  height: 21px;
+  color: var(--primary) ;
+}
+
+.float-right{
+  float: right;
 }
