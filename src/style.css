@@ -65,7 +65,7 @@
 }
 
 button {
-  background: var(--primary) !important;
+  background-color: var(--primary) !important;
   border: none !important;
 }
 

@@ -1,6 +1,6 @@
 import { firebaseConfig } from "../firebaseConfig";
 import firebase from "firebase/compat/app";
-import { getFirestore, collection, getDocs, addDoc } from "firebase/firestore";
+import { getFirestore, collection, getDocs, addDoc, updateDoc, getDoc } from "firebase/firestore";
 import { HackIdea } from "../interfaces/documentData";
 
 const app = firebase.initializeApp(firebaseConfig);
@@ -14,7 +14,14 @@ export async function getData() {
 }
 
 export async function saveData(data: HackIdea) {
-  const ideaRef = collection(db, "ideas");
-  const docRef = await addDoc(ideaRef, data);
-  console.log(docRef);
+  const collectionRef = collection(db, "ideas");
+  const docRef = await addDoc(collectionRef, data);
+  return true;
+}
+
+export async function updateData(data: HackIdea) {
+  const collectionRef = collection(db, "ideas");
+  // collectionRef.
+  // const docById = await getDoc()
+  // const docRef = await updateDoc(collectionRef, )
 }

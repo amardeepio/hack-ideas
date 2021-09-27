@@ -4,7 +4,6 @@ import { FieldProps, Formik, FormikProps } from "formik";
 import * as Yup from "yup";
 import { FormFields, AddIdeaModalProps } from "../interfaces/form";
 import { saveData } from "../functions";
-
 const initialValues: FormFields = {
   title: "",
   description: "",
