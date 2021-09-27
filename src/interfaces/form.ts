@@ -1,8 +1,10 @@
-export interface IdeaDetailModalProps {
+import { HackIdea } from "./documentData";
+
+export interface ChallengeDetailModalProps {
   show: boolean;
   toggleModal: () => void;
   title: string;
-  data?: FormFields;
+  data?: HackIdea;
   id?: string;
 }
 

@@ -8,7 +8,7 @@ import { HackIdea } from "../interfaces/documentData";
 import { FilterBar } from "./FilterBar";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
-import { IdeaCards } from "./IdeaCards";
+import { ChallengeCards } from "./ChallengeCards";
 
 export const Dashboard: React.FC = () => {
   const [user] = useLocalStorage("user", "");
@@ -46,7 +46,7 @@ export const Dashboard: React.FC = () => {
             </Row>
           </Col>
           <Col>
-            <IdeaCards ideaList={ideaList} loading={loading} />
+            <ChallengeCards ideaList={ideaList} loading={loading} />
           </Col>
         </Row>
       </main>

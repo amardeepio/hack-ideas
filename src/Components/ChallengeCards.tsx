@@ -5,12 +5,13 @@ import { colors } from "../constant";
 import { updateData } from "../functions";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { HackIdea } from "../interfaces/documentData";
-import { FormFields } from "../interfaces/form";
 import { AlertMessage } from "./AlertMessage";
-import { IdeaDetailModal } from "./IdeaDetailModal";
+import { ChallengeDetailModal } from "./ChallengeDetailModal";
 import { Loader } from "./Loader";
 
-export const IdeaCards: React.FC<IdeaCardsProps> = (props: IdeaCardsProps) => {
+export const ChallengeCards: React.FC<IdeaCardsProps> = (
+  props: IdeaCardsProps
+) => {
   const { ideaList, loading } = props;
   const [showAlert, setShowAlert] = useState(false);
   const [show, setShow] = useState(false);
@@ -32,13 +33,11 @@ export const IdeaCards: React.FC<IdeaCardsProps> = (props: IdeaCardsProps) => {
     setShow(!show);
   };
 
-  const parseDataForModal = (): FormFields | undefined => {
+  const parseDataForModal = (): HackIdea | undefined => {
     if (currentIndex !== -1) {
       const { title, tags, description } = ideaList[currentIndex];
       return {
-        title,
-        tags: tags.join(","),
-        description,
+        ...ideaList[currentIndex],
       };
     }
   };
@@ -55,7 +54,11 @@ export const IdeaCards: React.FC<IdeaCardsProps> = (props: IdeaCardsProps) => {
                 onClick={() => handleToggleModal(idx)}
               >
                 <Card.Title>{idea.title}</Card.Title>
-                <Card.Text>{idea.description.length > 50 ? idea.description.slice(0, 50) + "...." : idea.description}</Card.Text>
+                <Card.Text>
+                  {idea.description.length > 50
+                    ? idea.description.slice(0, 50) + "...."
+                    : idea.description}
+                </Card.Text>
               </Card.Body>
               <Card.Footer>
                 <Row>
@@ -89,7 +92,7 @@ export const IdeaCards: React.FC<IdeaCardsProps> = (props: IdeaCardsProps) => {
         show={showAlert}
         toggleShow={() => setShowAlert(!showAlert)}
       />
-      <IdeaDetailModal
+      <ChallengeDetailModal
         show={show}
         toggleModal={() => setShow(!show)}
         title="Details"

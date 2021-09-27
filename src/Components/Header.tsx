@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Col, Row, Button } from "react-bootstrap";
 import { MdAdd } from "react-icons/md";
-import { IdeaDetailModal } from "./IdeaDetailModal";
+import { ChallengeDetailModal } from "./ChallengeDetailModal";
 import { MdMessage } from "react-icons/md";
 import { useHistory } from "react-router";
 import { useLocalStorage } from "../hooks/useLocalStorage";
@@ -21,7 +21,7 @@ export const Header: React.FC = () => {
     if (path === "/" && user)
       return (
         <Button onClick={toggleModal} className="primary-bg">
-          <MdAdd /> <span className="font-bold p">Add Idea</span>
+          <MdAdd /> <span className="font-bold p">Add Challenge</span>
         </Button>
       );
     return <></>;
@@ -59,7 +59,7 @@ export const Header: React.FC = () => {
           </Col>
         </Row>
       </header>
-      <IdeaDetailModal show={show} toggleModal={toggleModal} title="Add Idea" />
+      <ChallengeDetailModal show={show} toggleModal={toggleModal} title="Add Challenge" />
     </>
   );
 };

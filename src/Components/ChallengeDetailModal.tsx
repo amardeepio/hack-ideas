@@ -1,22 +1,23 @@
 import { Modal, Button, Form } from "react-bootstrap";
-import React from "react";
-import { FieldProps, Formik, FormikProps } from "formik";
+import React, { useEffect } from "react";
+import { Formik } from "formik";
 import * as Yup from "yup";
-import { FormFields, IdeaDetailModalProps } from "../interfaces/form";
+import { FormFields, ChallengeDetailModalProps } from "../interfaces/form";
 import { saveData, updateData } from "../functions";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-const initialValues: FormFields = {
-  title: "",
-  description: "",
-  tags: "",
-};
 
-export const IdeaDetailModal: React.FC<IdeaDetailModalProps> = (
-  props: IdeaDetailModalProps
+export const ChallengeDetailModal: React.FC<ChallengeDetailModalProps> = (
+  props: ChallengeDetailModalProps
 ) => {
   const { show, toggleModal, title, data, id } = props;
-  const [user, setUser] = useLocalStorage("user", "");
+  const initialValues: FormFields = {
+    title: data?.title || "",
+    description: data?.description || "",
+    tags: data?.tags.join(",") || "",
+  };
+  const [user] = useLocalStorage("user", "");
   const handleFormSubmit = async (values: FormFields) => {
+    console.log(values);
     if (id) {
       await updateData(id, {
         ...values,
@@ -35,6 +36,13 @@ export const IdeaDetailModal: React.FC<IdeaDetailModalProps> = (
     }
   };
 
+  const isDisabled = () => {
+    if (id && data?.userId !== user) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <Modal show={show} onHide={toggleModal}>
       <Modal.Header closeButton>
@@ -42,7 +50,7 @@ export const IdeaDetailModal: React.FC<IdeaDetailModalProps> = (
       </Modal.Header>
 
       <Formik
-        initialValues={data || initialValues}
+        initialValues={initialValues}
         validationSchema={Yup.object({
           title: Yup.string()
             .min(3, "Must be 3 characters or more")
@@ -66,6 +74,7 @@ export const IdeaDetailModal: React.FC<IdeaDetailModalProps> = (
                   <Form.Control
                     {...formik.getFieldProps("title")}
                     placeholder="What's on your mind?"
+                    disabled={isDisabled()}
                   />
 
                   {formik.touched.title && formik.errors.title ? (
@@ -79,11 +88,13 @@ export const IdeaDetailModal: React.FC<IdeaDetailModalProps> = (
                   <Form.Control
                     {...formik.getFieldProps("description")}
                     placeholder="Describe your idea"
-                    as="textarea" rows={3}
+                    as="textarea"
+                    rows={3}
+                    disabled={isDisabled()}
                   />
 
                   {formik.touched.description && formik.errors.description ? (
-                    <Form.Text className="text-danger" >
+                    <Form.Text className="text-danger">
                       {formik.errors.description}
                     </Form.Text>
                   ) : null}
