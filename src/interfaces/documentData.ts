@@ -3,5 +3,5 @@ export interface HackIdea {
     description: string;
     tags: string[];
     upvotes: number;
-    createdAt: string;
+    createdAt: string | Date;
 }

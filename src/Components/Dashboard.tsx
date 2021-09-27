@@ -1,11 +1,18 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
+import { useHistory } from "react-router";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 import { FilterBar } from "./FilterBar";
 import { IdeaCards } from "./IdeaCards";
 
 export const Dashboard: React.FC = () => {
+  const [user, setUser] = useLocalStorage("user", "");
+  const history = useHistory();
+  if(!user){
+    history.push("/login")
+  }
   return (
-    <main className="mt-3">
+    <main className="mt-3 dashboard-main">
       <Row>
         <Col md={12}>
           <Row>

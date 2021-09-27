@@ -3,6 +3,7 @@ import React from "react";
 import { FieldProps, Formik, FormikProps } from "formik";
 import * as Yup from "yup";
 import { FormFields, AddIdeaModalProps } from "../interfaces/form";
+import { saveData } from "../functions";
 
 const initialValues: FormFields = {
   title: "",
@@ -17,6 +18,15 @@ export const AddIdeaModal: React.FC<AddIdeaModalProps> = (
   const handleSave = (formik: FormikProps<any>) => {
     formik.handleSubmit();
     toggleModal();
+  };
+  const handleFormSubmit = (values: FormFields) => {
+    console.log(values);
+    saveData({
+      ...values,
+      createdAt: new Date(),
+      upvotes: 0,
+      tags: values.tags.split(","),
+    });
   };
 
   return (
@@ -37,7 +47,7 @@ export const AddIdeaModal: React.FC<AddIdeaModalProps> = (
           tags: Yup.string(),
         })}
         onSubmit={(values, { setSubmitting }) => {
-          console.log(values);
+          handleFormSubmit(values);
         }}
       >
         {(formik) => (

@@ -23,8 +23,12 @@
   margin-left: 4px;
 }
 
-main {
+.dashboard-main {
   min-height: calc(100vh - var(--header-height) - var(--footer-height) - 1rem);
+}
+
+.layout {
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
 }
 
 .footer {
@@ -60,11 +64,23 @@ main {
   color: var(--primary);
 }
 
-.primary-bg {
+button {
   background: var(--primary) !important;
   border: none !important;
 }
 
 .font-bold {
   font-weight: 500 !important;
+}
+
+.upvote-icon {
+  float: right;
+}
+
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }

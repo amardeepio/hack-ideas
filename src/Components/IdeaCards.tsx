@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Badge, Button, Card, Col, Row } from "react-bootstrap";
+import { Badge, Card, Col, Row } from "react-bootstrap";
 import { BsHeart } from "react-icons/bs";
 import { getData } from "../functions";
 import { HackIdea } from "../interfaces/documentData";
@@ -17,6 +17,11 @@ export const IdeaCards: React.FC = () => {
     fetchData();
   }, []);
 
+  const randomColor = () => {
+    const colors = ["primary", "secondary", "success", "warning", "danger", "info", "dark"];
+    return colors[Math.round(Math.random() * colors.length)]
+  }
+
   return (
     <>
       <Row>
@@ -25,17 +30,17 @@ export const IdeaCards: React.FC = () => {
             <Card className="card">
               <Card.Body>
                 <Card.Title>{idea.title}</Card.Title>
-                <Card.Text>{idea.description.slice(0,100)}....</Card.Text>
+                <Card.Text>{idea.description.slice(0,50)}....</Card.Text>
               </Card.Body>
               <Card.Footer>
                 <Row>
                   <Col md={12}>
                     {idea.tags.map((tag: any) => (
-                      <Badge bg="primary">{tag}</Badge>
+                      <Badge bg={randomColor()} className="mx-1">{tag}</Badge>
                     ))}
                   </Col>
-                  <Col>
-                    <span>
+                  <Col className="p-0">
+                    <span className="upvote-icon">
                       <BsHeart />
                       {idea.upvotes}
                     </span>
