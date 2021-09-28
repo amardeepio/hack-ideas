@@ -7,8 +7,8 @@ export const PageNotFound: React.FC = () => {
     <div>
       <Header />
       <div className="layout text-center">
-        <div className="display-1">4O4</div>
-        <div>Page Not Found</div>
+        <div className="display-1" data-testid="status__code">4O4</div>
+        <div data-testid="status__message">Page Not Found</div>
       </div>
       <Footer />
     </div>

@@ -20,7 +20,7 @@ export const LogIn: React.FC = () => {
     <>
       <Header />
       <main className="layout">
-        <div className="login-container">
+        <div className="login-container" >
           <Card className="p-5">
             <Row>
               <Col md={12}>
@@ -28,10 +28,12 @@ export const LogIn: React.FC = () => {
                   placeholder="Employee ID"
                   value={empId}
                   onChange={(event) => setEmpId(event.target.value)}
+                  name="empId"
+                  data-testid="empId__field"
                 />
               </Col>
               <Col md={12} className="mt-3 text-center">
-                <Button onClick={handleLogIn}>Log In</Button>
+                <Button onClick={handleLogIn} data-testid="logIn__button">Log In</Button>
               </Col>
             </Row>
           </Card>

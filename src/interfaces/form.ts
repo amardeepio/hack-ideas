@@ -6,6 +6,7 @@ export interface ChallengeDetailModalProps {
   title: string;
   data?: HackIdea;
   id?: string;
+  updateList?: () => Promise<void>;
 }
 
 export interface FormFields {

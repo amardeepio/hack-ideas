@@ -55,7 +55,7 @@ export const Dashboard: React.FC = () => {
             </Row>
           </Col>
           <Col>
-            <ChallengeCards ideaList={ideaList} loading={loading} />
+            <ChallengeCards ideaList={ideaList} loading={loading} updateList={fetchData} />
           </Col>
         </Row>
       </main>

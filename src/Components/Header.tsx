@@ -44,7 +44,7 @@ export const Header: React.FC = () => {
     <>
       <header className="header">
         <Row>
-          <Col md={3}>
+          <Col md={3} data-testid="header___title">
             <span className="h3 primary-text">
               <MdMessage />
               Hack

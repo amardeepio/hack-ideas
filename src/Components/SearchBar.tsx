@@ -10,12 +10,13 @@ export const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
         style={{ maxWidth: 400 }}
         value={searchText}
         onChange={(event) => onChangeValue(event.target.value)}
+        data-testid="search__bar"
       />
     </div>
   );
 };
 
-interface SearchBarProps {
+export interface SearchBarProps {
   searchText: string;
   onChangeValue: (value: string) => void;
 }

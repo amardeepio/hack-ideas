@@ -9,10 +9,10 @@ import { AlertMessage } from "./AlertMessage";
 import { ChallengeDetailModal } from "./ChallengeDetailModal";
 import { Loader } from "./Loader";
 
-export const ChallengeCards: React.FC<IdeaCardsProps> = (
-  props: IdeaCardsProps
+export const ChallengeCards: React.FC<ChallengeCardsProps> = (
+  props: ChallengeCardsProps
 ) => {
-  const { ideaList, loading } = props;
+  const { ideaList, loading, updateList } = props;
   const [showAlert, setShowAlert] = useState(false);
   const [show, setShow] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(-1);
@@ -25,6 +25,7 @@ export const ChallengeCards: React.FC<IdeaCardsProps> = (
       setShowAlert(true);
     } else {
       await updateData(id, { ...data, upvotes: data.upvotes! + 1 });
+      updateList();
     }
   };
 
@@ -35,11 +36,15 @@ export const ChallengeCards: React.FC<IdeaCardsProps> = (
 
   const parseDataForModal = (): HackIdea | undefined => {
     if (currentIndex !== -1) {
-      const { title, tags, description } = ideaList[currentIndex];
       return {
         ...ideaList[currentIndex],
       };
     }
+  };
+
+  const handleCloseModal = () => {
+    setCurrentIndex(-1);
+    setShow(!show);
   };
 
   return (
@@ -94,16 +99,18 @@ export const ChallengeCards: React.FC<IdeaCardsProps> = (
       />
       <ChallengeDetailModal
         show={show}
-        toggleModal={() => setShow(!show)}
+        toggleModal={handleCloseModal}
         title="Details"
         data={parseDataForModal()}
         id={currentIndex !== -1 ? ideaList[currentIndex].id : undefined}
+        updateList={updateList}
       />
     </>
   );
 };
 
-interface IdeaCardsProps {
+interface ChallengeCardsProps {
   ideaList: HackIdea[];
   loading: boolean;
+  updateList: () => Promise<void>;
 }
