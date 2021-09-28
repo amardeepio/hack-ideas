@@ -1,5 +1,5 @@
 import { Modal, Button, Form } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { FormFields, ChallengeDetailModalProps } from "../interfaces/form";

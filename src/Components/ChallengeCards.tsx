@@ -16,16 +16,22 @@ export const ChallengeCards: React.FC<ChallengeCardsProps> = (
   const [showAlert, setShowAlert] = useState(false);
   const [show, setShow] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(-1);
+  const [alertMessage, setAlertMessage] = useState("");
   const randomColor = () => {
     return colors[Math.round(Math.random() * colors.length)];
   };
   const [user] = useLocalStorage("user", "");
-  const handleUpvote = async (id: string, data: HackIdea) => {
+  const handleUpvote = async (idx: number, id: string, data: HackIdea) => {
     if (data.userId === user) {
+      setAlertMessage("Cannot upvote your own post");
       setShowAlert(true);
     } else {
+      setCurrentIndex(idx);
+      setAlertMessage("Upvoted!");
+      setShowAlert(true);
       await updateData(id, { ...data, upvotes: data.upvotes! + 1 });
-      updateList();
+      await updateList();
+      setCurrentIndex(-1);
     }
   };
 
@@ -77,10 +83,14 @@ export const ChallengeCards: React.FC<ChallengeCardsProps> = (
                   <Col className="p-0">
                     <span className="upvote-container">
                       <BsHeart
-                        onClick={() => handleUpvote(idea.id as string, idea)}
-                        className="upvote-icon"
+                        onClick={() =>
+                          handleUpvote(idx, idea.id as string, idea)
+                        }
+                        className={`upvote-icon ${
+                          currentIndex === idx ? "bg-red" : ""
+                        }`}
                       />
-                      {idea.upvotes}
+                      {currentIndex === idx ? idea.upvotes! + 1 : idea.upvotes}
                     </span>
                   </Col>
                 </Row>
@@ -92,7 +102,7 @@ export const ChallengeCards: React.FC<ChallengeCardsProps> = (
       {loading && <Loader />}
       <AlertMessage
         title="Info"
-        message="Cannot upvote your own post"
+        message={alertMessage}
         bg="info"
         show={showAlert}
         toggleShow={() => setShowAlert(!showAlert)}

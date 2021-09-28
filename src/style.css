@@ -87,6 +87,10 @@ button {
   color: red;
 }
 
+.bg-red {
+  fill: red;
+}
+
 .login-container {
   display: flex;
   justify-content: center;
@@ -101,8 +105,11 @@ button {
   flex-wrap: wrap;
 }
 
-.alert-z-index {
+.alert {
   z-index: 111;
+  position: fixed !important;
+  top: 0;
+  right: 0;
 }
 
 .logout-button {
@@ -129,4 +136,11 @@ button {
     padding-top: 5px;
     text-align: center;
   }
+}
+
+.about-me {
+  font-size: 14px;
+  position: relative;
+  top: 16px;
+  text-decoration: none !important;
 }

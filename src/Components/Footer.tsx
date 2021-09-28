@@ -14,6 +14,9 @@ export const Footer: React.FC = () => {
               alt="logo"
             />
           </span>
+          <span className="text-muted float-right about-me">
+            Developed by <a href="https://github.com/suman-kr/">suman-kr</a>
+          </span>
         </Col>
       </Row>
     </footer>

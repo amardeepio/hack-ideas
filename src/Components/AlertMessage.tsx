@@ -5,7 +5,7 @@ export const AlertMessage: React.FC<AlertMessageProps> = (
   props: AlertMessageProps
 ) => {
   return (
-    <ToastContainer position="top-end" className="alert-z-index">
+    <ToastContainer  className="alert">
       <Toast show={props.show} bg={props.bg} onClose={props.toggleShow}>
         <Toast.Header>
           
