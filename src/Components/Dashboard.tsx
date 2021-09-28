@@ -19,15 +19,22 @@ export const Dashboard: React.FC = () => {
   const [ideaList, setIdeaList] = useState<HackIdea[]>([]);
   const [loading, setLoading] = useState(true);
   const [field, setField] = useState("createdAt");
+  const [searchText, setSearchText] = useState("");
   const [order, setOrder] = useState<FieldSortOrder>(SortOrder.DESC);
   const fetchData = async () => {
-    const data = await getData(field, order);
+    let data = await getData(field, order);
+    if (searchText)
+      data = data.filter((val) =>
+        (val as unknown as HackIdea).title
+          .toLowerCase()
+          .includes(searchText.toLowerCase())
+      );
     setLoading(false);
     setIdeaList(data as unknown as HackIdea[]);
   };
   useEffect(() => {
     fetchData();
-  }, [field, order]);
+  }, [field, order, searchText]);
   return (
     <>
       <Header />
@@ -41,6 +48,8 @@ export const Dashboard: React.FC = () => {
                   updateField={setField}
                   updateOrder={setOrder}
                   field={field}
+                  searchText={searchText}
+                  onChangeValue={setSearchText}
                 />
               </Col>
             </Row>

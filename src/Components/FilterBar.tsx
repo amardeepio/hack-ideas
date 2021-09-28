@@ -9,7 +9,7 @@ export const FilterBar: React.FC<FilterBarProps> = (props: FilterBarProps) => {
     <div className="mb-2">
       <Row>
         <Col md={10} sm={8}>
-          <SearchBar />
+          <SearchBar {...props} />
         </Col>
         <Col md={2} sm={4}>
           <SortComponent {...props} />
@@ -25,4 +25,6 @@ interface FilterBarProps {
   updateOrder: (val: FieldSortOrder) => void;
   field: string;
   updateField: (val: string) => void;
+  searchText: string;
+  onChangeValue: (value: string) => void;
 }
