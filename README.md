@@ -5,9 +5,15 @@
 - Demo is hosted on firebase hosting [Here](https://hack-idea-6dfbb.web.app/)
 
 ## Running the project:
+- Without docker
 ```
 npm install
 npm start
+```
+- Using docker
+```
+sudo docker build -t container:dev .
+sudo docker run -d -p 3000:3000 container:dev
 ```
 
 ## Running the unit tests
