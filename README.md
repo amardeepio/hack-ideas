@@ -1,46 +1,58 @@
-# Getting Started with Create React App
+# Hack-Idea Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- UI is built using React.JS with TypeScript
+- Data handling and API is built using `firebase`
+- Demo is hosted on firebase hosting [Here](https://hack-idea-6dfbb.web.app/)
 
-## Available Scripts
+## Running the project:
+```
+npm install
+npm start
+```
 
-In the project directory, you can run:
+## Running the unit tests
+```
+npm run test
+```
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Assumptions:
+- During login it is expected that Employee ID is existing in the database. No validation check.
+- Can use any random string as Employee ID.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Employee cannot upvote their own challenge posts.
+- Employee can upvote other's challenge posts multiple times (No-limit).
+- Employee can only edit their own challenge post fully. Employee can only edit tags associated with other's post.
 
-### `yarn test`
+## Backend structure on firebase
+- Collection name: `ideas`
+```
+Document Structure 
+{
+    id: # auto generated id from firebase
+    createdAt: # post creation time
+    title: # post title
+    description: # post description
+    tags: # array of user defined tags
+    userId: # employee id of the post owner
+    upvotes: # upvote count of the post
+}
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Extra features:
+- Added search functionality for posts (only post's title)
+- Added a 404 page for any non existing paths.
 
-### `yarn build`
+## Project structure
+- Top level directory `/src`
+- All components are present inside `Components` folder
+- All firebase functions are present inside `functions` folder
+- Custom hooks for React are present inside `hooks` folder
+- Generic interfaces for typings are present inside `interfaces` folder
+- Tests are present inside `__tests__` folder
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Packages used for development:
+- bootstrap and react-bootstrap (UI components and development)
+- firebase (API hosting and backend)
+- formik and yup (Form validation)
+- react-router-dom (Page routes)

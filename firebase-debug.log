@@ -1,0 +1,35 @@
+[debug] [2021-09-28T19:02:51.814Z] ----------------------------------------------------------------------
+[debug] [2021-09-28T19:02:51.815Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2021-09-28T19:02:51.816Z] CLI Version:   9.18.0
+[debug] [2021-09-28T19:02:51.816Z] Platform:      linux
+[debug] [2021-09-28T19:02:51.816Z] Node Version:  v16.9.0
+[debug] [2021-09-28T19:02:51.816Z] Time:          Wed Sep 29 2021 00:32:51 GMT+0530 (India Standard Time)
+[debug] [2021-09-28T19:02:51.816Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-09-28T19:02:51.860Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-09-28T19:02:51.860Z] > authorizing via signed-in user (skcool.123bgp@gmail.com)
+[debug] [2021-09-28T19:02:51.860Z] [iam] checking project hack-idea-6dfbb for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-09-28T19:02:51.862Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-09-28T19:02:51.862Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-09-28T19:02:52.209Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Tue, 28 Sep 2021 19:02:52 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-09-28T19:02:52.232Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/hack-idea-6dfbb:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2021-09-28T19:02:54.008Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 28 Sep 2021 19:02:53 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1419","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-09-28T19:02:54.012Z] > refreshing access token with scopes: []
+[debug] [2021-09-28T19:02:54.013Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-09-28T19:02:54.290Z] <<< HTTP RESPONSE 200 {"date":"Tue, 28 Sep 2021 19:02:54 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-09-28T19:02:54.309Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/hack-idea-6dfbb [none]
+[debug] [2021-09-28T19:02:55.044Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/hack-idea-6dfbb 200
+[debug] [2021-09-28T19:02:55.045Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/hack-idea-6dfbb {"projectId":"hack-idea-6dfbb","projectNumber":"461030577841","displayName":"hack-idea","name":"projects/hack-idea-6dfbb","resources":{"hostingSite":"hack-idea-6dfbb","realtimeDatabaseInstance":"hack-idea-6dfbb-default-rtdb","storageBucket":"hack-idea-6dfbb.appspot.com","locationId":"europe-west"},"state":"ACTIVE"}
+[info] 
+[info] === Deploying to 'hack-idea-6dfbb'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2021-09-28T19:02:55.053Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-09-28T19:02:55.054Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-09-28T19:02:55.327Z] <<< HTTP RESPONSE 200 {"date":"Tue, 28 Sep 2021 19:02:55 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-09-28T19:02:55.346Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/hack-idea-6dfbb/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}

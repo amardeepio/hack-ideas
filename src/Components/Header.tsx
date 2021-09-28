@@ -12,7 +12,7 @@ export const Header: React.FC = () => {
   const toggleModal = () => setShow(!show);
   const history = useHistory();
   const [user, setUser] = useLocalStorage("user", "");
-  const handleLogOut = async() => {
+  const handleLogOut = async () => {
     await setUser("");
     history.push("/login");
   };
@@ -29,23 +29,27 @@ export const Header: React.FC = () => {
   const LogoutButton = () => {
     if (user) {
       return (
-        <div
-          className="float-right cursor-pointer"
-          title="Logout"
-          
-        >
-          <BiLogOut className="logout-button"onClick={handleLogOut} />
+        <div className="float-right cursor-pointer" title="Logout">
+          <BiLogOut className="logout-button" onClick={handleLogOut} />
         </div>
       );
     }
     return <></>;
   };
+  const handleGotoHomePage = () => {
+    history.push("/")
+  }
   return (
     <>
       <header className="header">
         <Row>
-          <Col md={3} data-testid="header___title">
-            <span className="h3 primary-text">
+          <Col
+            md={3}
+            data-testid="header___title"
+            className="cursor-pointer"
+            onClick={handleGotoHomePage}
+          >
+            <span className="h3 primary-text ">
               <MdMessage />
               Hack
             </span>{" "}
@@ -59,7 +63,11 @@ export const Header: React.FC = () => {
           </Col>
         </Row>
       </header>
-      <ChallengeDetailModal show={show} toggleModal={toggleModal} title="Add Challenge" />
+      <ChallengeDetailModal
+        show={show}
+        toggleModal={toggleModal}
+        title="Add Challenge"
+      />
     </>
   );
 };
