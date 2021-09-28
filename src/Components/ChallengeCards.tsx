@@ -17,6 +17,7 @@ export const ChallengeCards: React.FC<ChallengeCardsProps> = (
   const [show, setShow] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [alertMessage, setAlertMessage] = useState("");
+  const [upvoteIdx, setUpvoteIdx] = useState(-1);
   const randomColor = () => {
     return colors[Math.round(Math.random() * colors.length)];
   };
@@ -26,12 +27,12 @@ export const ChallengeCards: React.FC<ChallengeCardsProps> = (
       setAlertMessage("Cannot upvote your own post");
       setShowAlert(true);
     } else {
-      setCurrentIndex(idx);
+      setUpvoteIdx(idx);
       setAlertMessage("Upvoted!");
       setShowAlert(true);
       await updateData(id, { ...data, upvotes: data.upvotes! + 1 });
       await updateList();
-      setCurrentIndex(-1);
+      setUpvoteIdx(-1);
     }
   };
 
@@ -87,10 +88,10 @@ export const ChallengeCards: React.FC<ChallengeCardsProps> = (
                           handleUpvote(idx, idea.id as string, idea)
                         }
                         className={`upvote-icon ${
-                          currentIndex === idx ? "bg-red" : ""
+                          upvoteIdx === idx ? "bg-red" : ""
                         }`}
                       />
-                      {currentIndex === idx ? idea.upvotes! + 1 : idea.upvotes}
+                      {upvoteIdx === idx ? idea.upvotes! + 1 : idea.upvotes}
                     </span>
                   </Col>
                 </Row>
