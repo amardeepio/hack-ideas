@@ -6,7 +6,7 @@ export const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
   return (
     <div>
       <Form.Control
-        placeholder="Search..."
+        placeholder="Search using title"
         style={{ maxWidth: 400 }}
         value={searchText}
         onChange={(event) => onChangeValue(event.target.value)}

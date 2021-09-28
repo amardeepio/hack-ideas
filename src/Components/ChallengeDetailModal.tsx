@@ -19,14 +19,15 @@ export const ChallengeDetailModal: React.FC<ChallengeDetailModalProps> = (
   };
   const [user] = useLocalStorage("user", "");
   const handleFormSubmit = async (values: FormFields) => {
-    console.log(values);
+    
+    setShowAlert(true);
     if (id) {
       await updateData(id, {
         ...values,
         tags: values.tags.split(","),
       });
       toggleModal();
-      setShowAlert(true);
+      setShowAlert(false)
       updateList && updateList();
     } else {
       await saveData({
@@ -37,7 +38,6 @@ export const ChallengeDetailModal: React.FC<ChallengeDetailModalProps> = (
         userId: user,
       });
       toggleModal();
-      setShowAlert(true);
       window.location.reload();
     }
   };
@@ -119,7 +119,7 @@ export const ChallengeDetailModal: React.FC<ChallengeDetailModalProps> = (
                 <Button variant="secondary" onClick={toggleModal}>
                   Close
                 </Button>
-                <Button variant="primary" onClick={() => formik.handleSubmit()}>
+                <Button variant="primary" onClick={() => formik.handleSubmit()} disabled={showAlert}>
                   Save Changes
                 </Button>
               </Modal.Footer>
