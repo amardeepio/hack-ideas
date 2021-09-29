@@ -96,7 +96,6 @@ export const ChallengeDetailModal: React.FC<ChallengeDetailModalProps> = (
                       {...formik.getFieldProps("description")}
                       placeholder="Describe your idea"
                       as="textarea"
-                      rows={3}
                       disabled={isDisabled()}
                     />
 

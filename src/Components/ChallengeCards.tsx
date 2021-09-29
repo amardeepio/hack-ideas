@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Badge, Card, Col, Row } from "react-bootstrap";
-import { BsHeart } from "react-icons/bs";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { colors } from "../constant";
 import { updateData } from "../functions";
 import { useLocalStorage } from "../hooks/useLocalStorage";
@@ -8,6 +8,7 @@ import { HackIdea } from "../interfaces/documentData";
 import { AlertMessage } from "./AlertMessage";
 import { ChallengeDetailModal } from "./ChallengeDetailModal";
 import { Loader } from "./Loader";
+import { UpvoteButton } from "./UpvoteButton";
 
 export const ChallengeCards: React.FC<ChallengeCardsProps> = (
   props: ChallengeCardsProps
@@ -17,25 +18,27 @@ export const ChallengeCards: React.FC<ChallengeCardsProps> = (
   const [show, setShow] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [alertMessage, setAlertMessage] = useState("");
-  const [upvoteIdx, setUpvoteIdx] = useState(-1);
   const randomColor = () => {
     return colors[Math.round(Math.random() * colors.length)];
   };
   const [user] = useLocalStorage("user", "");
-  const handleUpvote = async (idx: number, id: string, data: HackIdea) => {
-    if (data.userId === user) {
+  const handleUpvote = async (idx: number) => {
+    if (ideaList[idx].userId === user) {
       setAlertMessage("Cannot upvote your own post");
       setShowAlert(true);
     } else {
-      setUpvoteIdx(idx);
       setAlertMessage("Upvoted!");
       setShowAlert(true);
-      await updateData(id, { ...data, upvotes: data.upvotes! + 1 });
+      const { upvotedBy } = ideaList[idx];
+      const upvotedBySet = new Set(upvotedBy).add(user);
+      await updateData(ideaList[idx].id || "", {
+        ...ideaList[idx],
+        upvotes: ideaList[idx].upvotes! + 1,
+        upvotedBy: Array.from(upvotedBySet),
+      });
       await updateList();
-      setUpvoteIdx(-1);
     }
   };
-
   const handleToggleModal = (idx: number) => {
     setCurrentIndex(idx);
     setShow(!show);
@@ -52,6 +55,13 @@ export const ChallengeCards: React.FC<ChallengeCardsProps> = (
   const handleCloseModal = () => {
     setCurrentIndex(-1);
     setShow(!show);
+  };
+
+  const checkForUserUpvote = (idx: number) => {
+    if (ideaList[idx].upvotedBy?.includes(user)) {
+      return true;
+    }
+    return false;
   };
 
   return (
@@ -82,17 +92,12 @@ export const ChallengeCards: React.FC<ChallengeCardsProps> = (
                     ))}
                   </Col>
                   <Col className="p-0">
-                    <span className="upvote-container">
-                      <BsHeart
-                        onClick={() =>
-                          handleUpvote(idx, idea.id as string, idea)
-                        }
-                        className={`upvote-icon ${
-                          upvoteIdx === idx ? "bg-red" : ""
-                        }`}
-                      />
-                      {upvoteIdx === idx ? idea.upvotes! + 1 : idea.upvotes}
-                    </span>
+                    <UpvoteButton
+                      liked={checkForUserUpvote(idx)}
+                      handleUpvote={() => handleUpvote(idx)}
+                      index={idx}
+                      upvotes={idea.upvotes || 0}
+                    />
                   </Col>
                 </Row>
               </Card.Footer>

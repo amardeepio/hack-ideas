@@ -6,4 +6,5 @@ export interface HackIdea {
     upvotes?: number;
     createdAt?: string | Date;
     userId?: string;
+    upvotedBy?: string[];
 }
