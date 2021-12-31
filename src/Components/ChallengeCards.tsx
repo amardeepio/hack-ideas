@@ -29,11 +29,21 @@ export const ChallengeCards: React.FC<ChallengeCardsProps> = (
     } else {
       setAlertMessage("Upvoted!");
       setShowAlert(true);
-      const { upvotedBy } = ideaList[idx];
-      const upvotedBySet = new Set(upvotedBy).add(user);
+      let { upvotedBy, upvotes } = ideaList[idx];
+      const upvotedBySet = new Set(upvotedBy)
+      if (upvotes){
+        if (upvotedBySet.has(user)){
+          upvotes--;
+          upvotedBySet.delete(user)
+        }
+        else{
+          upvotes++;
+          upvotedBySet.add(user);
+        }
+      }
       await updateData(ideaList[idx].id || "", {
         ...ideaList[idx],
-        upvotes: ideaList[idx].upvotes! + 1,
+        upvotes,
         upvotedBy: Array.from(upvotedBySet),
       });
       await updateList();

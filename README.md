@@ -27,7 +27,7 @@ npm run test
 - Can use any random string as Employee ID.
 
 - Employee cannot upvote their own challenge posts.
-- Employee can upvote other's challenge posts multiple times (No-limit).
+- Employee can upvote other's challenge posts only once.
 - Employee can only edit their own challenge post fully. Employee can only edit tags associated with other's post.
 
 ## Backend structure on firebase
@@ -42,6 +42,7 @@ Document Structure
     tags: # array of user defined tags
     userId: # employee id of the post owner
     upvotes: # upvote count of the post
+    upvotedBy: # collection of userIds for post upvote
 }
 ```
 
